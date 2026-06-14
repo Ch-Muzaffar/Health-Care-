@@ -1,0 +1,2381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CarePulse Lahore — Premium At-Home Healthcare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --emerald: #0B4F46;
+      --emerald-light: #0d6158;
+      --emerald-pale: #e8f0ef;
+      --cream: #FAF9F5;
+      --cream-dark: #F2F0EA;
+      --sage: #5A8778;
+      --sage-light: #7aa598;
+      --amber: #D4A373;
+      --amber-light: #e2bc95;
+      --text-dark: #1a1a1a;
+      --text-mid: #4a4a4a;
+      --text-muted: #7a7a7a;
+      --white: #ffffff;
+      --shadow-soft: 0 4px 24px -4px rgba(11, 79, 70, 0.08);
+      --shadow-card: 0 8px 40px -8px rgba(11, 79, 70, 0.12);
+      --shadow-hover: 0 20px 60px -12px rgba(11, 79, 70, 0.18);
+      --radius: 1.25rem;
+      --radius-lg: 2rem;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── ANNOUNCEMENT BAR ── */
+    .announce-bar {
+      background: var(--emerald);
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      padding: 0.6rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    .announce-bar span {
+      opacity: 0.75;
+      margin: 0 0.25rem;
+    }
+
+    .live-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.95);
+      white-space: nowrap;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      background: #4ade80;
+      border-radius: 50%;
+      display: inline-block;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .pulse-dot::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      background: #4ade80;
+      border-radius: 50%;
+      opacity: 0;
+      animation: pulse-ring 2s ease-out infinite;
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        transform: scale(1);
+        opacity: 0.6;
+      }
+
+      100% {
+        transform: scale(2.5);
+        opacity: 0;
+      }
+    }
+
+    /* ── NAVIGATION ── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 249, 245, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(11, 79, 70, 0.08);
+      padding: 0 2rem;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .nav.scrolled {
+      box-shadow: 0 4px 30px -4px rgba(11, 79, 70, 0.1);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      width: 34px;
+      height: 34px;
+      background: var(--emerald);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .logo-text {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--emerald);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .logo-sub {
+      font-size: 0.62rem;
+      font-weight: 500;
+      color: var(--sage);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--emerald);
+    }
+
+    .nav-cta {
+      background: var(--emerald);
+      color: white !important;
+      padding: 0.6rem 1.25rem;
+      border-radius: 9px;
+      font-weight: 600 !important;
+      font-size: 0.82rem !important;
+      white-space: nowrap;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease !important;
+      box-shadow: 0 4px 16px -4px rgba(11, 79, 70, 0.35);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px -4px rgba(11, 79, 70, 0.45);
+      color: white !important;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+      z-index: 101;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--emerald);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--cream);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      text-decoration: none;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--emerald);
+      transition: opacity 0.2s;
+    }
+
+    .mobile-menu a:hover {
+      opacity: 0.7;
+    }
+
+    .mobile-cta {
+      background: var(--emerald);
+      color: white !important;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-size: 1rem !important;
+      box-shadow: 0 8px 24px -4px rgba(11, 79, 70, 0.35);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 92dvh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 5rem 3rem 4rem;
+      gap: 4rem;
+    }
+
+    .hero-left {
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--emerald-pale);
+      border: 1px solid rgba(11, 79, 70, 0.15);
+      color: var(--emerald);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-eyebrow svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .hero-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      line-height: 1.1;
+      color: var(--text-dark);
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--emerald);
+    }
+
+    .hero-sub {
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      color: var(--text-mid);
+      max-width: 52ch;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .btn-primary {
+      background: var(--emerald);
+      color: white;
+      padding: 0.875rem 1.75rem;
+      border-radius: 11px;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 8px 28px -6px rgba(11, 79, 70, 0.4);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px -8px rgba(11, 79, 70, 0.45);
+    }
+
+    .btn-primary:active {
+      transform: translateY(-1px) scale(0.99);
+    }
+
+    .btn-primary svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--emerald);
+      padding: 0.875rem 1.75rem;
+      border-radius: 11px;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      cursor: pointer;
+      border: 2px solid rgba(11, 79, 70, 0.2);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--emerald);
+      background: var(--emerald-pale);
+      transform: translateY(-2px);
+    }
+
+    .social-proof {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0.75rem 1.1rem;
+      background: white;
+      border-radius: 14px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(11, 79, 70, 0.07);
+    }
+
+    .stars {
+      display: flex;
+      gap: 2px;
+    }
+
+    .stars svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--amber);
+    }
+
+    .proof-text {
+      font-size: 0.78rem;
+      color: var(--text-mid);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .proof-text strong {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .proof-divider {
+      width: 1px;
+      height: 28px;
+      background: rgba(11, 79, 70, 0.1);
+    }
+
+    /* ── HERO RIGHT ── */
+    .hero-right {
+      position: relative;
+      padding: 1rem;
+    }
+
+    .hero-image-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      box-shadow: var(--shadow-hover);
+    }
+
+    .hero-image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(11, 79, 70, 0.45) 100%);
+    }
+
+    .hero-float-badge {
+      position: absolute;
+      bottom: 1.75rem;
+      left: 1.75rem;
+      right: 1.75rem;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(12px);
+      border-radius: 14px;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .badge-top {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .badge-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--emerald-pale);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .badge-icon svg {
+      width: 16px;
+      height: 16px;
+      color: var(--emerald);
+    }
+
+    .badge-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .badge-sub {
+      font-size: 0.71rem;
+      color: var(--text-muted);
+    }
+
+    .badge-bar {
+      height: 5px;
+      background: var(--emerald-pale);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .badge-bar-fill {
+      height: 100%;
+      background: linear-gradient(to right, var(--emerald), var(--sage));
+      border-radius: 999px;
+      width: 0;
+      transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.8s;
+    }
+
+    .badge-bar-fill.animate {
+      width: 92%;
+    }
+
+    .badge-stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.4rem;
+    }
+
+    .badge-stat span {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .badge-stat strong {
+      font-size: 0.82rem;
+      color: var(--emerald);
+      font-weight: 700;
+    }
+
+    .hero-float-stat {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: var(--emerald);
+      color: white;
+      border-radius: 14px;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 8px 32px -8px rgba(11, 79, 70, 0.45);
+      text-align: center;
+      min-width: 110px;
+      z-index: 2;
+    }
+
+    .float-stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      line-height: 1;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+    }
+
+    .float-stat-label {
+      font-size: 0.68rem;
+      opacity: 0.8;
+      margin-top: 0.25rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      padding: 6rem 2rem;
+    }
+
+    .section-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1rem;
+    }
+
+    .section-tag::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--sage);
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.9rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-dark);
+      max-width: 18ch;
+    }
+
+    .section-subtitle {
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      color: var(--text-mid);
+      max-width: 55ch;
+      margin-top: 1rem;
+    }
+
+    /* ── SERVICES ── */
+    .services-section {
+      background: white;
+    }
+
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .service-card {
+      background: var(--cream);
+      border-radius: var(--radius);
+      padding: 2.25rem;
+      border: 1px solid rgba(11, 79, 70, 0.06);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--emerald), var(--sage));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-card.featured {
+      background: var(--emerald);
+      color: white;
+    }
+
+    .svc-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(11, 79, 70, 0.08);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-card.featured .svc-icon {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .svc-icon svg {
+      width: 24px;
+      height: 24px;
+      color: var(--emerald);
+    }
+
+    .service-card.featured .svc-icon svg {
+      color: white;
+    }
+
+    .svc-title {
+      font-size: 1.1875rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .service-card.featured .svc-title {
+      color: white;
+    }
+
+    .svc-desc {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-mid);
+    }
+
+    .service-card.featured .svc-desc {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .svc-items {
+      list-style: none;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .svc-items li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text-mid);
+    }
+
+    .service-card.featured .svc-items li {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .svc-items li svg {
+      width: 15px;
+      height: 15px;
+      color: var(--sage);
+      flex-shrink: 0;
+    }
+
+    .service-card.featured .svc-items li svg {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .svc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1.75rem;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--emerald);
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+
+    .svc-link:hover {
+      gap: 0.65rem;
+    }
+
+    .service-card.featured .svc-link {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .svc-link svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ── TRUST SECTION ── */
+    .trust-section {
+      background: var(--cream);
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      margin-top: 3.5rem;
+    }
+
+    .trust-left {
+      background: var(--emerald);
+      padding: 3.5rem;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .trust-left-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: white;
+      margin-bottom: 1.5rem;
+    }
+
+    .trust-left-text {
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 2.5rem;
+    }
+
+    .trust-stats {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .trust-stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.25rem;
+      font-weight: 400;
+      color: white;
+      letter-spacing: -0.03em;
+    }
+
+    .trust-stat-label {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 500;
+      margin-top: 0.2rem;
+    }
+
+    .trust-right {
+      background: white;
+      padding: 3.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .trust-item {
+      padding: 1.75rem 0;
+      border-bottom: 1px solid rgba(11, 79, 70, 0.07);
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .trust-item:first-child {
+      padding-top: 0;
+    }
+
+    .trust-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .trust-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+      color: var(--emerald-pale);
+      font-weight: 400;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 2.5rem;
+      text-align: center;
+    }
+
+    .trust-item-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.01em;
+    }
+
+    .trust-item-desc {
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section {
+      background: white;
+      overflow: hidden;
+    }
+
+    .testimonials-header {
+      margin-bottom: 3rem;
+    }
+
+    .reviews-track-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reviews-track-wrapper::before,
+    .reviews-track-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .reviews-track-wrapper::before {
+      left: 0;
+      background: linear-gradient(to right, white, transparent);
+    }
+
+    .reviews-track-wrapper::after {
+      right: 0;
+      background: linear-gradient(to left, white, transparent);
+    }
+
+    .reviews-track {
+      display: flex;
+      gap: 1.5rem;
+      animation: scroll-reviews 30s linear infinite;
+      width: max-content;
+    }
+
+    .reviews-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes scroll-reviews {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .review-card {
+      background: var(--cream);
+      border-radius: var(--radius);
+      padding: 2rem;
+      width: 340px;
+      flex-shrink: 0;
+      border: 1px solid rgba(11, 79, 70, 0.06);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .review-card:hover {
+      box-shadow: var(--shadow-card);
+    }
+
+    .review-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 1rem;
+    }
+
+    .review-stars svg {
+      width: 15px;
+      height: 15px;
+      fill: var(--amber);
+    }
+
+    .review-text {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: var(--text-mid);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .review-text::before {
+      content: '\201C';
+      font-size: 1.5rem;
+      color: var(--amber);
+      line-height: 0;
+      vertical-align: -0.35em;
+      margin-right: 0.1em;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .author-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--emerald-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--emerald);
+    }
+
+    .author-name {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .author-location {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .review-verified {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.68rem;
+      color: var(--sage);
+      font-weight: 600;
+      margin-left: auto;
+    }
+
+    .review-verified svg {
+      width: 11px;
+      height: 11px;
+    }
+
+    /* ── CONTACT / FOOTER ── */
+    .contact-section {
+      background: var(--cream-dark);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3vw, 2.75rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-dark);
+      margin-top: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .contact-sub {
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      color: var(--text-mid);
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-field label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      letter-spacing: 0.02em;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      background: white;
+      border: 1.5px solid rgba(11, 79, 70, 0.12);
+      border-radius: 10px;
+      padding: 0.8rem 1rem;
+      font-size: 0.9rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-dark);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      resize: vertical;
+      appearance: none;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: var(--emerald);
+      box-shadow: 0 0 0 3px rgba(11, 79, 70, 0.08);
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .contact-info-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      border: 1px solid rgba(11, 79, 70, 0.07);
+      box-shadow: var(--shadow-soft);
+      position: sticky;
+      top: 100px;
+    }
+
+    .info-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem;
+    }
+
+    .info-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .info-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid rgba(11, 79, 70, 0.06);
+    }
+
+    .info-item:last-of-type {
+      border-bottom: none;
+    }
+
+    .info-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--emerald-pale);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-icon svg {
+      width: 17px;
+      height: 17px;
+      color: var(--emerald);
+    }
+
+    .info-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.3rem;
+    }
+
+    .info-value {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+
+    .info-value a {
+      color: var(--emerald);
+      text-decoration: none;
+    }
+
+    .open-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--emerald-pale);
+      border: 1px solid rgba(11, 79, 70, 0.12);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .open-badge-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse-ring 2s ease-out infinite;
+      flex-shrink: 0;
+    }
+
+    .open-badge-text {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--emerald);
+    }
+
+    .open-badge-sub {
+      font-size: 0.72rem;
+      color: var(--sage);
+      font-weight: 500;
+      display: block;
+    }
+
+    /* ── FOOTER BAR ── */
+    footer {
+      background: var(--emerald);
+      color: rgba(255, 255, 255, 0.65);
+      padding: 2rem 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    footer span {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--emerald);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      box-shadow: 0 8px 32px -8px rgba(11, 79, 70, 0.5);
+      z-index: 999;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      max-width: 320px;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-up-delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .fade-up-delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .fade-up-delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 4rem 2rem 3rem;
+        gap: 3rem;
+      }
+
+      .hero-right {
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      .hero-float-stat {
+        right: -0.5rem;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .service-card:first-child {
+        grid-column: span 2;
+      }
+
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .trust-left {
+        padding: 2.5rem;
+      }
+
+      .trust-right {
+        padding: 2.5rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .contact-info-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero {
+        padding: 3rem 1.5rem 2.5rem;
+      }
+
+      .section {
+        padding: 4rem 1.5rem;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card:first-child {
+        grid-column: span 1;
+      }
+
+      .hero-float-stat {
+        right: 0.5rem;
+        top: 1rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .trust-stats {
+        gap: 1.5rem;
+      }
+
+      .reviews-track-wrapper::before,
+      .reviews-track-wrapper::after {
+        width: 40px;
+      }
+
+      .announce-bar {
+        font-size: 0.72rem;
+        gap: 0.75rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-headline {
+        font-size: 2rem;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .social-proof {
+        flex-wrap: wrap;
+      }
+
+      .proof-divider {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announce-bar">
+    <span>🌙 24/7 At-Home Nursing &amp; Clinical Care Across Lahore &mdash; Mon to Sat</span>
+    <div class="live-dot">
+      <span class="pulse-dot"></span>
+      Clinicians On Duty Now
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" id="mainNav">
+    <a href="#" class="nav-logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z" />
+          <path d="M12 8v8M8 12h8" />
+        </svg>
+      </div>
+      <div>
+        <div class="logo-text">CarePulse</div>
+        <span class="logo-sub">Lahore</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why-us">Why Us</a></li>
+      <li><a href="#stories">Patient Stories</a></li>
+      <li><a href="#contact">FAQs</a></li>
+      <li><a href="#contact" class="nav-cta">Book an At-Home Assessment</a></li>
+    </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#why-us" class="mobile-link">Why Us</a>
+    <a href="#stories" class="mobile-link">Patient Stories</a>
+    <a href="#contact" class="mobile-link">FAQs</a>
+    <a href="#contact" class="mobile-cta mobile-link">Book an Assessment</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow fade-up">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9,22 9,12 15,12 15,22" />
+        </svg>
+        Serving Lahore Since 2019
+      </div>
+
+      <h1 class="hero-headline fade-up fade-up-delay-1">
+        Hospital-Grade Medical & Nursing Care. <em>Delivered in Your Own Home.</em>
+      </h1>
+
+      <p class="hero-sub fade-up fade-up-delay-2">
+        Skip the stressful hospital commutes. From routine injections to dedicated 24-hour post-operative nursing, our
+        certified and exceptionally polite healthcare professionals bring elite clinical care right to your doorstep in
+        Lahore.
+      </p>
+
+      <div class="hero-ctas fade-up fade-up-delay-3">
+        <a href="#contact" class="btn-primary">
+          Request a Call Back
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+        <a href="#services" class="btn-secondary">View Services</a>
+      </div>
+
+      <div class="social-proof fade-up fade-up-delay-3">
+        <div class="stars">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+        </div>
+        <div class="proof-divider"></div>
+        <p class="proof-text"><strong>Rated 4.9/5</strong> by 120+ families in<br>Garden Town, Gulberg &amp; DHA</p>
+      </div>
+    </div>
+
+    <div class="hero-right fade-up fade-up-delay-2">
+      <div class="hero-image-card">
+        <img src="https://picsum.photos/seed/carepulse-nurse-home/600/750"
+          alt="Certified nurse providing home care in Lahore" loading="lazy">
+        <div class="hero-image-overlay"></div>
+
+        <div class="hero-float-stat">
+          <div class="float-stat-num">98%</div>
+          <div class="float-stat-label">Family<br>Satisfaction</div>
+        </div>
+
+        <div class="hero-float-badge">
+          <div class="badge-top">
+            <div class="badge-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+              </svg>
+            </div>
+            <div>
+              <div class="badge-title">Patient Monitoring</div>
+              <div class="badge-sub">Vitals checked &mdash; 8:30 AM today</div>
+            </div>
+          </div>
+          <div class="badge-bar">
+            <div class="badge-bar-fill" id="heroBar"></div>
+          </div>
+          <div class="badge-stat">
+            <span>Recovery progress</span>
+            <strong>92% on track</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section services-section" id="services">
+    <div class="section-inner">
+      <div class="services-header">
+        <div>
+          <div class="section-tag fade-up">Core Services</div>
+          <h2 class="section-title fade-up fade-up-delay-1">Clinical Care, Wherever You Are Most Comfortable</h2>
+        </div>
+        <p class="section-subtitle fade-up fade-up-delay-2" style="margin-top:0">Every service is carried out by
+          verified, trained, and thoroughly background-checked medical professionals &mdash; because your family
+          deserves nothing less.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Card 1: Featured -->
+        <div class="service-card featured fade-up">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+          </div>
+          <h3 class="svc-title">General Nursing & Elder Care</h3>
+          <p class="svc-desc">Compassionate, round-the-clock nursing for elderly and post-operative patients who require
+            attentive, professional care in the privacy and comfort of their own home.</p>
+          <ul class="svc-items">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Post-operative recovery support
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Mobility assistance &amp; physiotherapy
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Chronic illness management
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Blood pressure, glucose &amp; vital monitoring
+            </li>
+          </ul>
+          <a href="#contact" class="svc-link">
+            Request this service
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="service-card fade-up fade-up-delay-1">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M8 2v4M16 2v4M3 10h18M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6z" />
+              <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01" />
+            </svg>
+          </div>
+          <h3 class="svc-title">Clinical Procedures at Home</h3>
+          <p class="svc-desc">Trained clinical nurses perform a full range of medical procedures at your bedside,
+            eliminating the fatigue and risk of frequent hospital visits for your loved ones.</p>
+          <ul class="svc-items">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              IV infusions &amp; fluid therapy
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Professional wound dressing &amp; care
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Catheter placement &amp; management
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Routine &amp; insulin injections
+            </li>
+          </ul>
+          <a href="#contact" class="svc-link">
+            Book a procedure
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="service-card fade-up fade-up-delay-2">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12,6 12,12 16,14" />
+            </svg>
+          </div>
+          <h3 class="svc-title">24/7 Dedicated Care Rotations</h3>
+          <p class="svc-desc">For critically ill or high-dependency patients, we deploy a coordinated team of nurses
+            working in disciplined 8-hour rotations so care never once lapses, day or night.</p>
+          <ul class="svc-items">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Round-the-clock shift coordination
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              ICU step-down &amp; critical patient support
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Seamless handover documentation
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Family briefings after every shift
+            </li>
+          </ul>
+          <a href="#contact" class="svc-link">
+            Arrange 24hr coverage
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST / WHY US -->
+  <section class="section trust-section" id="why-us">
+    <div class="section-inner">
+      <div class="section-tag fade-up">Why Families Choose Us</div>
+      <h2 class="section-title fade-up fade-up-delay-1">The Standard Every Patient Deserves</h2>
+
+      <div class="trust-grid">
+        <div class="trust-left fade-up fade-up-delay-1">
+          <div>
+            <h3 class="trust-left-headline">Not just a care agency. A family you can trust at 3 in the morning.</h3>
+            <p class="trust-left-text">
+              We built CarePulse because we experienced firsthand how difficult it is to find medical staff who show up
+              on time, treat patients with dignity, and communicate clearly. Every nurse on our roster has been vetted
+              for both clinical competence and personal character.
+            </p>
+          </div>
+          <div class="trust-stats">
+            <div>
+              <div class="trust-stat-num">120+</div>
+              <div class="trust-stat-label">Families served in Lahore</div>
+            </div>
+            <div>
+              <div class="trust-stat-num">4.9★</div>
+              <div class="trust-stat-label">Average family rating</div>
+            </div>
+            <div>
+              <div class="trust-stat-num">0</div>
+              <div class="trust-stat-label">Missed shifts on record</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="trust-right fade-up fade-up-delay-2">
+          <div class="trust-item">
+            <div class="trust-num">01</div>
+            <div>
+              <h4 class="trust-item-title">Punctual &amp; Disciplined</h4>
+              <p class="trust-item-desc">Our staff coordinates with precision to arrive exactly when they are scheduled.
+                We understand that in healthcare, a late arrival is not an inconvenience &mdash; it is a disruption to a
+                patient's medical routine.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-num">02</div>
+            <div>
+              <h4 class="trust-item-title">Exceptional Professionalism</h4>
+              <p class="trust-item-desc">Hand-picked and certified, our nurses are consistently praised by families for
+                being deeply respectful, gentle, and reassuring with patients. Clinical excellence and human warmth are
+                non-negotiable criteria when we hire.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-num">03</div>
+            <div>
+              <h4 class="trust-item-title">24-Hour Coverage</h4>
+              <p class="trust-item-desc">Fully operational Monday through Saturday, our team handles everything from
+                early-morning vitals to urgent nursing adjustments at midnight. When something needs immediate
+                attention, we are already reachable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section testimonials-section" id="stories">
+    <div class="section-inner">
+      <div class="testimonials-header">
+        <div class="section-tag fade-up">Patient Stories</div>
+        <h2 class="section-title fade-up fade-up-delay-1">Trusted by Families Across Lahore</h2>
+        <p class="section-subtitle fade-up fade-up-delay-2">Real words from real families in Garden Town, Gulberg, DHA,
+          and beyond.</p>
+      </div>
+    </div>
+
+    <div class="reviews-track-wrapper fade-up fade-up-delay-2">
+      <div class="reviews-track" id="reviewsTrack">
+        <!-- Reviews (duplicated for seamless loop) -->
+
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+          </div>
+          <p class="review-text">Finding reliable home care for my aging father in Garden Town was exhausting until we
+            found this team. The nurses are incredibly polite, exceptionally well-trained, and handle dressing changes
+            with so much care.</p>
+          <div class="review-author">
+            <div class="author-avatar">AR</div>
+            <div>
+              <div class="author-name">Amna R.</div>
+              <div class="author-location">Garden Town, Lahore</div>
+            </div>
+            <div class="review-verified">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Verified
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+          </div>
+          <p class="review-text">We needed 24-hour nursing support after my mother's major surgery. The shift
+            coordination was seamless, and they never missed a single hour. Absolute lifesavers during the hardest weeks
+            of our lives.</p>
+          <div class="review-author">
+            <div class="author-avatar">ZM</div>
+            <div>
+              <div class="author-name">Zain Malik</div>
+              <div class="author-location">DHA Phase 5, Lahore</div>
+            </div>
+            <div class="review-verified">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Verified
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+          </div>
+          <p class="review-text">Very professional. The nurse comes daily exactly on schedule for my grandmother's
+            insulin and vitals. Painless injections and a highly cooperative attitude. Truly impressed with their
+            consistency.</p>
+          <div class="review-author">
+            <div class="author-avatar">BK</div>
+            <div>
+              <div class="author-name">Dr. Bilal K.</div>
+              <div class="author-location">Gulberg III, Lahore</div>
+            </div>
+            <div class="review-verified">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Verified
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+          </div>
+          <p class="review-text">After my husband's hip replacement, we needed daily wound dressing and mobility
+            support. The nurse was so gentle and patient with him. The whole family felt genuinely reassured throughout
+            the recovery period.</p>
+          <div class="review-author">
+            <div class="author-avatar">FS</div>
+            <div>
+              <div class="author-name">Farida S.</div>
+              <div class="author-location">Model Town, Lahore</div>
+            </div>
+            <div class="review-verified">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Verified
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+          </div>
+          <p class="review-text">We had a very bad experience with another agency before. CarePulse was a completely
+            different standard. Their nurse was on time every single day for six weeks straight. That kind of
+            reliability is rare in Lahore.</p>
+          <div class="review-author">
+            <div class="author-avatar">KA</div>
+            <div>
+              <div class="author-name">Khalid A.</div>
+              <div class="author-location">Johar Town, Lahore</div>
+            </div>
+            <div class="review-verified">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Verified
+            </div>
+          </div>
+        </div>
+
+        <!-- Duplicated for infinite scroll -->
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+          </div>
+          <p class="review-text">Finding reliable home care for my aging father in Garden Town was exhausting until we
+            found this team. The nurses are incredibly polite, exceptionally well-trained, and handle dressing changes
+            with so much care.</p>
+          <div class="review-author">
+            <div class="author-avatar">AR</div>
+            <div>
+              <div class="author-name">Amna R.</div>
+              <div class="author-location">Garden Town, Lahore</div>
+            </div>
+            <div class="review-verified">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Verified
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+          </div>
+          <p class="review-text">We needed 24-hour nursing support after my mother's major surgery. The shift
+            coordination was seamless, and they never missed a single hour. Absolute lifesavers during the hardest weeks
+            of our lives.</p>
+          <div class="review-author">
+            <div class="author-avatar">ZM</div>
+            <div>
+              <div class="author-name">Zain Malik</div>
+              <div class="author-location">DHA Phase 5, Lahore</div>
+            </div>
+            <div class="review-verified">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Verified
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+          </div>
+          <p class="review-text">Very professional. The nurse comes daily exactly on schedule for my grandmother's
+            insulin and vitals. Painless injections and a highly cooperative attitude. Truly impressed with their
+            consistency.</p>
+          <div class="review-author">
+            <div class="author-avatar">BK</div>
+            <div>
+              <div class="author-name">Dr. Bilal K.</div>
+              <div class="author-location">Gulberg III, Lahore</div>
+            </div>
+            <div class="review-verified">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Verified
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+          </div>
+          <p class="review-text">After my husband's hip replacement, we needed daily wound dressing and mobility
+            support. The nurse was so gentle and patient with him. The whole family felt genuinely reassured throughout
+            the recovery period.</p>
+          <div class="review-author">
+            <div class="author-avatar">FS</div>
+            <div>
+              <div class="author-name">Farida S.</div>
+              <div class="author-location">Model Town, Lahore</div>
+            </div>
+            <div class="review-verified">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Verified
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+          </div>
+          <p class="review-text">We had a very bad experience with another agency before. CarePulse was a completely
+            different standard. Their nurse was on time every single day for six weeks straight. That kind of
+            reliability is rare in Lahore.</p>
+          <div class="review-author">
+            <div class="author-avatar">KA</div>
+            <div>
+              <div class="author-name">Khalid A.</div>
+              <div class="author-location">Johar Town, Lahore</div>
+            </div>
+            <div class="review-verified">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              Verified
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact-section" id="contact">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div class="fade-up">
+          <div class="section-tag">Get in Touch</div>
+          <h2 class="contact-headline">Request a Call Back. We Respond Within the Hour.</h2>
+          <p class="contact-sub">Fill in the short form and one of our care coordinators will reach out to assess your
+            requirements, walk you through our available nurses, and arrange your first home visit.</p>
+
+          <form class="contact-form" id="contactForm">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="fname">Patient / Contact Name</label>
+                <input type="text" id="fname" placeholder="e.g. Zara Khalid" required>
+              </div>
+              <div class="form-field">
+                <label for="phone">WhatsApp / Mobile Number</label>
+                <input type="tel" id="phone" placeholder="+92 3XX XXXXXXX" required>
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="service">Service Required</label>
+              <select id="service">
+                <option value="">Select a service&hellip;</option>
+                <option>General Nursing &amp; Elder Care</option>
+                <option>Clinical Procedures at Home</option>
+                <option>24/7 Dedicated Care Rotations</option>
+                <option>Not sure &mdash; need guidance</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="area">Area in Lahore</label>
+              <input type="text" id="area" placeholder="e.g. DHA Phase 6, Gulberg, Model Town&hellip;">
+            </div>
+            <div class="form-field">
+              <label for="notes">Brief Notes (optional)</label>
+              <textarea id="notes" rows="3"
+                placeholder="Describe the patient's condition or what you need&hellip;"></textarea>
+            </div>
+            <button type="submit" class="btn-primary"
+              style="width:100%;justify-content:center;font-size:1rem;padding:1rem 2rem;">
+              Send Request &mdash; We'll Call Within the Hour
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </form>
+        </div>
+
+        <div class="fade-up fade-up-delay-2">
+          <div class="contact-info-card">
+            <div class="info-title">CarePulse Lahore</div>
+            <div class="info-sub">Clinic &amp; Coordination Office</div>
+
+            <div class="info-item">
+              <div class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div>
+                <div class="info-label">Address</div>
+                <div class="info-value">9-A First Floor, Garden Prince Hall,<br>Abu Bakar Block, Garden Town, Lahore
+                </div>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 10.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 0h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 7.91a16 16 0 0 0 8 8l1.27-.85a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 24 17v-.08z" />
+                </svg>
+              </div>
+              <div>
+                <div class="info-label">Direct Clinic Line</div>
+                <div class="info-value"><a href="tel:+923096223333">+92 309 6223333</a></div>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12,6 12,12 16,14" />
+                </svg>
+              </div>
+              <div>
+                <div class="info-label">Operating Hours</div>
+                <div class="info-value">24 Hours &mdash; Monday to Saturday<br><span
+                    style="color:var(--text-muted);font-weight:500;font-size:0.8rem">Closed on Sundays</span></div>
+              </div>
+            </div>
+
+            <div class="open-badge">
+              <span class="open-badge-dot"></span>
+              <div>
+                <div class="open-badge-text">Clinicians On Duty Right Now</div>
+                <span class="open-badge-sub">Call or WhatsApp for immediate assistance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>CarePulse Lahore</span> &mdash; Premium At-Home Healthcare &mdash; Garden Town, Lahore &copy; 2025. All rights
+    reserved.
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+      stroke-linejoin="round">
+      <polyline points="20,6 9,17 4,12" />
+    </svg>
+    Request received. We'll call you within the hour.
+  </div>
+
+  <script>
+    // NAV scroll effect
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    // HAMBURGER
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+
+    // FADE-UP OBSERVER
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // HERO BAR ANIMATION
+    const heroBarObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          document.getElementById('heroBar').classList.add('animate');
+          heroBarObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+    const heroBar = document.getElementById('heroBar');
+    if (heroBar) heroBarObserver.observe(heroBar);
+
+    // FORM SUBMIT
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4500);
+      e.target.reset();
+    });
+
+    // SMOOTH ANCHOR SCROLL
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
